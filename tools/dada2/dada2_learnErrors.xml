@@ -62,7 +62,7 @@ ggsave('plot.pdf', plot, width = 20,height = 15,units = c("cm"))
         <param name="seed" type="integer" optional="true" min="0" max="2147483647" label="Random seed" help="Controls which samples are selected when Randomize samples is enabled and the learning budget uses only a subset of multiple input samples. A seed does not affect sample selection for a single sample or when all samples are used. Leave blank for default random-number-generator behavior. Reproducibility also requires the same input order and software version."/>
         <section name="advanced" title="Advanced Option">
             <expand macro="errorEstimationFunction"/>
-            <param name="monotone_decreasing" type="boolean" checked="false" label="Enforce non-increasing error rates after learning" help="Optional nf-core/ampliseq NovaSeq correction: replace each transition rate by the maximum of that rate and all higher-quality rates. This acts after learning, preserves other learned model fields, and is different from the binned-quality error estimation function. Applies to all rows, including self-transitions, without renormalization. Leave disabled for the standard DADA2 learned model."/>
+            <param name="monotone_decreasing" type="boolean" checked="false" label="Apply legacy nf-core monotone correction after learning" help="For reproducing the optional nf-core/ampliseq 2.11.0 transformation: replace each transition rate by the maximum of that rate and all higher-quality rates. This acts after learning and differs from DADA2's supported binned-quality error estimation function. Applies to all rows, including self-transitions, without renormalization. Leave disabled for standard analyses; binned quality scores are not specific to NovaSeq."/>
             <param argument="randomize" type="boolean" checked="false" truevalue="TRUE" falsevalue="FALSE" label="Randomize samples" help="Pick samples at random, otherwise samples are read in the provided order until enough reads are obtained (default)."/>
             <param name="maxconsist" argument="MAX_CONSIST" type="integer" value="10" min="0" label="Maximum number of times to step through the selfconsistency loop" help="If convergence was not reached in MAX_CONSIST steps, the estimated error rates in the last step are returned."/>
             <param name="omegac" argument="OMEGA_C" type="float" value="0" min="0" label="Threshold at which unique sequences inferred to contain errors are corrected" help="For reasons of convergence, and because it is
@@ -240,10 +240,10 @@ Error functions:
 - noqualErrfun: accepts a matrix of observed transitions, groups together all observed transitions regardless of quality scores, and estimates the error rate for that transition as the observed fraction of those transitions. The effect is that quality scores will be effectively ignored.
 - PacBioErrfun: This function accepts a matrix of observed transitions from PacBio CCS amplicon sequencing data, with each transition corresponding to a row (eg. row 2 = A->C) and each column to a quality score (eg. col 31 = Q30). It returns a matrix of estimated error rates of the same shape. Error rates are estimates by loessErrfun for quality scores 0-92, and individually by the maximum likelihood estimate for the maximum quality score of 93.
 
-Optional NovaSeq post-learning correction
+Legacy nf-core post-learning correction
 ................................................
 
-**Enforce non-increasing error rates after learning** reproduces the optional
+**Apply legacy nf-core monotone correction after learning** reproduces the optional
 monotone-decreasing correction used by nf-core/ampliseq 2.11.0. For each
 transition row, each quality's rate is replaced by the maximum rate at that
 quality or any higher quality. This is a reverse cumulative maximum, applied
@@ -254,7 +254,10 @@ implementation. The output plot displays the corrected model.
 
 This correction is **disabled by default**. It is distinct from choosing a
 binned-quality error estimation function inside the learning loop. Enable it
-only when the analysis calls for this particular transformation.
+only to reproduce an analysis that explicitly used this transformation. It is
+not a recommendation for new analyses with binned quality scores, which also
+occur on other instruments. DADA2's supported binned-quality error estimation
+function is already available in the error-estimation selector above.
 
 Reference implementation: `nf-core/ampliseq 2.11.0 novaseq_err_se.r
 <https://github.com/nf-core/ampliseq/blob/2.11.0/bin/novaseq_err_se.r>`_.
