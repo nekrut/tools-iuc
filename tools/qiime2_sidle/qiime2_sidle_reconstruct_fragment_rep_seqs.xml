@@ -29,7 +29,13 @@
             <param name="aligned_sequences" value="db_alignedsequences.qza" ftype="qza"/>
             <output name="representative_fragments" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/dna-sequences\.fasta$" n="1">
+                    <has_n_lines n="2"/>
+                    <has_line_matching expression="&gt;183870\|336012\r?$"/>
+                    <has_line_matching expression="AGTGAGGAATATTGGTCAATGGACGAGAGTCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCTATGGGTTGTAAACTTCTTTTATACGGGAATATGTATGTACCGTATGAATAAGGATCGGCTAACTCCGTGC\r?$"/>
+                    <has_line_matching expression="&gt;183870\|336012\r?$"/>
+                    <has_line_matching expression="AGTGAGGAATATTGGTCAATGGACGAGAGTCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCTATGGGTTGTAAACTTCTTTTATACGGGAATATGTATGTACCGTATGAATAAGGATCGGCTAACTCCGTGC\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[Sequence]"/>
             </output>

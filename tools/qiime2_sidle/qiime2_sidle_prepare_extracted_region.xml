@@ -42,13 +42,27 @@
             <param name="trim_length" value="150"/>
             <output name="collapsed_kmers" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/dna-sequences\.fasta$" n="1">
+                    <has_n_lines n="3054"/>
+                    <has_line_matching expression="&gt;1000444\r?$"/>
+                    <has_line_matching expression="GTCAAGTCATCATGGCCCTTATGGCTAGGGCTACACACGTGCTACAATGGTGAGTACAGAGGGTTGCCAAACTGTAAAGTGGAGCTAATCTCATAAAACTCATCGTAGTCCGGATTGAAGTCTGCAACTCGACTTCATGAAGTCGGAATC\r?$"/>
+                    <has_line_matching expression="&gt;99371\r?$"/>
+                    <has_line_matching expression="GTCAAGTCAGCACGGCTCTTACGTCTGGGGCTACACACACGCTACAATGGGCGGTACAATGGGCAGCGAAGGGGCGACCCGGAGCGAATCCCAGCAAAGCCGTCCTCAGTTGGGATCGGAGGCTGCAACTCGCCTCCGTGAACGCGGAGT\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[Sequence]"/>
             </output>
             <output name="kmer_map" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/kmer-map\.tsv$" n="1">
+                    <has_n_lines n="1573"/>
+                    <has_n_columns n="7"/>
+                    <has_line_matching expression="db\-seq\&#9;kmer\&#9;seq\-name\&#9;fwd\-primer\&#9;rev\-primer\&#9;region\&#9;kmer\-length\r?$"/>
+                    <has_line_matching expression="1000444\&#9;1000444\&#9;1000444\&#9;GGAGGAAGGTGGGGATGAC\&#9;AATACGTTCCCGGGCCTT\&#9;5\&#9;150\r?$"/>
+                    <has_line_matching expression="1004648\&#9;1004648\&#9;1004648\&#9;GGAGGAAGGTGGGGATGAC\&#9;AATACGTTCCCGGGCCTT\&#9;5\&#9;150\r?$"/>
+                    <has_line_matching expression="1006554\&#9;1006554\&#9;1006554\&#9;GGAGGAAGGTGGGGATGAC\&#9;AATACGTTCCCGGGCCTT\&#9;5\&#9;150\r?$"/>
+                    <has_line_matching expression="99371\&#9;99371\&#9;99371\&#9;GGAGGAAGGTGGGGATGAC\&#9;AATACGTTCCCGGGCCTT\&#9;5\&#9;150\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[KmerMap]"/>
             </output>

@@ -34,7 +34,15 @@
             <param name="region" value="2"/>
             <output name="regional_alignment" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/kmer-align\.tsv$" n="1">
+                    <has_n_lines n="15"/>
+                    <has_n_columns n="6"/>
+                    <has_line_matching expression="kmer\&#9;asv\&#9;length\&#9;mismatch\&#9;region\&#9;max\-mismatch\r?$"/>
+                    <has_line_matching expression="174154\&#9;4fa0b34f03bce3580cc8c5f4f719949a\&#9;135\&#9;2\&#9;2\&#9;2\r?$"/>
+                    <has_line_matching expression="183249\|186510\&#9;4fa0b34f03bce3580cc8c5f4f719949a\&#9;135\&#9;2\&#9;2\&#9;2\r?$"/>
+                    <has_line_matching expression="183870\|336012\&#9;0c9186cf6c5675a1415aaca927130f00\&#9;135\&#9;0\&#9;2\&#9;2\r?$"/>
+                    <has_line_matching expression="590519\&#9;4fa0b34f03bce3580cc8c5f4f719949a\&#9;135\&#9;2\&#9;2\&#9;2\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[KmerAlignment]"/>
             </output>

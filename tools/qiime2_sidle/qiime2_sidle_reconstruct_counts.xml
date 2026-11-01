@@ -66,7 +66,17 @@
             <param name="min_counts" value="0"/>
             <output name="reconstructed_table" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/feature-table\.biom$" n="1">
+                    <has_h5_keys keys="observation/ids,sample/ids,observation/matrix/data,observation/matrix/indices,observation/matrix/indptr,sample/matrix/data,sample/matrix/indices,sample/matrix/indptr"/>
+                    <has_h5_attribute key="shape" value="[9 3]"/>
+                    <has_h5_attribute key="nnz" value="27"/>
+                    <has_text text="set1"/>
+                    <has_text text="set2"/>
+                    <has_text text="set3"/>
+                    <has_text text="173921"/>
+                    <has_text text="183870|336012"/>
+                    <has_text text="297503"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureTable[Frequency]"/>
             </output>

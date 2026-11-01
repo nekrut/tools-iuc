@@ -40,7 +40,15 @@
             <param name="database" value="greengenes"/>
             <output name="reconstructed_taxonomy" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/taxonomy\.tsv$" n="1">
+                    <has_n_lines n="18"/>
+                    <has_n_columns n="2"/>
+                    <has_line_matching expression="Feature\ ID\&#9;Taxon\r?$"/>
+                    <has_line_matching expression="173921\&#9;k__Bacteria;\ p__Firmicutes;\ c__Clostridia;\ o__Clostridiales;\ f__Clostridiaceae;\ f__Clostridiaceae;\ f__Clostridiaceae\r?$"/>
+                    <has_line_matching expression="174154\&#9;k__Bacteria;\ p__Firmicutes;\ c__Clostridia;\ o__Clostridiales;\ o__Clostridiales;\ o__Clostridiales;\ o__Clostridiales\r?$"/>
+                    <has_line_matching expression="183249\&#9;k__Bacteria;\ p__Firmicutes;\ c__Clostridia;\ o__Clostridiales;\ o__Clostridiales;\ o__Clostridiales;\ o__Clostridiales\r?$"/>
+                    <has_line_matching expression="590519\&#9;k__Bacteria;\ p__Firmicutes;\ c__Clostridia;\ o__Clostridiales;\ o__Clostridiales;\ o__Clostridiales;\ o__Clostridiales\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[Taxonomy]"/>
             </output>

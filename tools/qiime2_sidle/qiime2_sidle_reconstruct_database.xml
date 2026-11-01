@@ -51,13 +51,29 @@
             <param name="regional_alignment" value="5_rep-seqs_align-map.qza,2_rep-seqs_align-map.qza,4_rep-seqs_align-map.qza,1_rep-seqs_align-map.qza,3_rep-seqs_align-map.qza" ftype="qza"/>
             <output name="database_map" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/sidle-reconstruction-mapping\.tsv$" n="1">
+                    <has_n_lines n="19"/>
+                    <has_n_columns n="7"/>
+                    <has_line_matching expression="db\-seq\&#9;clean_name\&#9;first\-region\&#9;first\-fwd\-primer\&#9;last\-region\&#9;last\-fwd\-primer\&#9;last\-kmer\-length\r?$"/>
+                    <has_line_matching expression="173921\&#9;173921\&#9;1\&#9;TGGCGAACGGGTGAGTAA\&#9;4\&#9;GGAGCATGTGGWTTAATTCGA\&#9;115\r?$"/>
+                    <has_line_matching expression="174154\&#9;174154\&#9;1\&#9;TGGCGAACGGGTGAGTAA\&#9;4\&#9;GGAGCATGTGGWTTAATTCGA\&#9;115\r?$"/>
+                    <has_line_matching expression="183249\&#9;183249\&#9;2\&#9;ACTCCTACGGGAGGCAGC\&#9;4\&#9;GGAGCATGTGGWTTAATTCGA\&#9;115\r?$"/>
+                    <has_line_matching expression="590519\&#9;590519\&#9;2\&#9;ACTCCTACGGGAGGCAGC\&#9;4\&#9;GGAGCATGTGGWTTAATTCGA\&#9;115\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[SidleReconstruction]"/>
             </output>
             <output name="database_summary" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/sidle-summary\.tsv$" n="1">
+                    <has_n_lines n="19"/>
+                    <has_n_columns n="6"/>
+                    <has_line_matching expression="feature\-id\&#9;num\-regions\&#9;total\-kmers\-mapped\&#9;mean\-kmer\-per\-region\&#9;stdv\-kmer\-per\-region\&#9;mapped\-asvs\r?$"/>
+                    <has_line_matching expression="\#q2:types\&#9;numeric\&#9;numeric\&#9;numeric\&#9;numeric\&#9;categorical\r?$"/>
+                    <has_line_matching expression="173921\&#9;3\&#9;3\&#9;1\&#9;0\&#9;ad73af2a96118df5bd652d8c852c9d6a\r?$"/>
+                    <has_line_matching expression="174154\&#9;3\&#9;3\&#9;1\&#9;0\&#9;4fa0b34f03bce3580cc8c5f4f719949a\r?$"/>
+                    <has_line_matching expression="590519\&#9;3\&#9;3\&#9;1\&#9;0\&#9;4fa0b34f03bce3580cc8c5f4f719949a\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[ReconstructionSummary]"/>
             </output>

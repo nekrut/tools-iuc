@@ -29,13 +29,29 @@
             <param name="trim_length" value="200"/>
             <output name="trimmed_table" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/feature-table\.biom$" n="1">
+                    <has_h5_keys keys="observation/ids,sample/ids,observation/matrix/data,observation/matrix/indices,observation/matrix/indptr,sample/matrix/data,sample/matrix/indices,sample/matrix/indptr"/>
+                    <has_h5_attribute key="shape" value="[9 3]"/>
+                    <has_h5_attribute key="nnz" value="27"/>
+                    <has_text text="set1"/>
+                    <has_text text="set2"/>
+                    <has_text text="set3"/>
+                    <has_text text="d09d9ee25cbf9bdb4b6f4de3f22a782f"/>
+                    <has_text text="64a4feac1ad76777153c1d72d33f0f77"/>
+                    <has_text text="fd4e93ff80d230816ab95af5c4d045c1"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureTable[Frequency]"/>
             </output>
             <output name="trimmed_representative_sequences" ftype="qza">
                 <assert_contents>
-                    <has_size min="100"/>
+                  <has_archive_member path="[^/]+/data/dna-sequences\.fasta$" n="1">
+                    <has_n_lines n="18"/>
+                    <has_line_matching expression="&gt;d09d9ee25cbf9bdb4b6f4de3f22a782f\r?$"/>
+                    <has_line_matching expression="TAGATATATGGAGGAACACCGGTGGCGAAAGCGGCTCTCTGGCTTGTAACTGACGCTGAGGCTCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAGGTGTTAGACCCTTTCCGGGGTTTAGTGCCGTAGCTAACGCATTAAGCACTCCGCCTGGGGAGTACGACCGC\r?$"/>
+                    <has_line_matching expression="&gt;9679147c73ac2a19e5d7303d0bd647ec\r?$"/>
+                    <has_line_matching expression="TAGATATCACGAAGAACTCCGATTGCGAAGGCAGCTTGCTGGACTGTAACTGACGCTGATGCTCGAAAGTGTGGGTATCAAACAGGATTAGATACCCTGGTAGTCCACACAGTAAACGATGAATACTCGCTGTTTGCGATATACAGTAAGCGGCCAAGCGAAAGCGTTAAGTATTCCACCTGGGGAGTACGCCGGCAACG\r?$"/>
+                  </has_archive_member>
                 </assert_contents>
                 <metadata name="semantic_type" value="FeatureData[Sequence]"/>
             </output>
